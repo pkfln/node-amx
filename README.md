@@ -1,1 +1,3 @@
-# node-amx
+## Instructions
+
+- build: ```npm run build```

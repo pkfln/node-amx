@@ -1,0 +1,17 @@
+{
+  "name": "node-amx",
+  "version": "0.1.0",
+  "description": "node-amx",
+  "main": "lib/cjs/index.js",
+  "types": "lib/cjs/index.d.ts",
+  "scripts": {
+    "prebuild": "rm -fr lib; rm -fr dist; mkdir lib; mkdir dist",
+    "build": "npm run build:cjs; npm run build:es6",
+    "build:cjs": "tsc --module commonjs --outDir lib/cjs",
+    "build:es6": "tsc --module es6 --outDir lib/es6"
+  },
+  "devDependencies": {
+    "typescript": "^2.5.3",
+    "uglifyify": "^4.0.4"
+  }
+}
