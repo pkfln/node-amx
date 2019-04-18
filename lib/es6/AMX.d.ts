@@ -1,0 +1,30 @@
+import AMXHeader from './AMXHeader';
+import FunctionStub from './FunctionStub';
+export default class AMX {
+    base: AMXHeader;
+    code: Buffer;
+    codeSize: number;
+    hlw: number;
+    stp: number;
+    hea: number;
+    stk: number;
+    cip: number;
+    frm: number;
+    alt: number;
+    reset_stk: number;
+    reset_hea: number;
+    paramcount: number;
+    debug: number;
+    flags: number;
+    error: number;
+    pri: number;
+    sysreq_d: number;
+    publics: FunctionStub[];
+    natives: FunctionStub[];
+    buffer: Buffer;
+    callbacks: Object;
+    constructor(buffer: Buffer);
+    private static expand;
+    private static memcmp;
+    static fromFile(filePath: string): Promise<AMX>;
+}

@@ -65,5 +65,5 @@ typings/
 # End of https://www.gitignore.io/api/node
 
 # ts-lib-starter
-/lib/
 /dist/
+/test/

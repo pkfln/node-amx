@@ -1,0 +1,12 @@
+export declare const AMX_COMPACTMARGIN: number;
+export declare const AMX_CELL_SIZE: number;
+export declare const AMX_FLAG_COMPACT: number;
+export declare const AMX_EXEC_MAIN: number;
+export declare const AMX_EXEC_CONT: number;
+export declare const AMX_MAGIC: number;
+export declare const AMX_CUR_FILE_VERSION: number;
+export declare const AMX_MIN_FILE_VERSION: number;
+export declare const AMX_MIN_AMX_VERSION: number;
+export declare const BYTE_SIZE: number;
+export declare const SIZEOF_FUNCSTUB: number;
+export declare const SIZEOF_FUNCSTUBNT: number;
