@@ -1,1 +1,1 @@
-export * from './amx';
+export * from './AMX';
