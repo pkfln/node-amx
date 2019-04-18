@@ -1,4 +1,4 @@
-const BYTE_SIZE: number = 56;
+import { BYTE_SIZE } from './constants';
 
 export default class AMXHeader {
   public buffer: Buffer;
@@ -59,11 +59,11 @@ export default class AMXHeader {
   }
 
   // defsize
-  public get defsize(): number {
+  public get defSize(): number {
     return this.buffer.readInt16LE(10);
   }
 
-  public set defsize(value: number) {
+  public set defSize(value: number) {
     this.buffer.writeInt16LE(value, 10);
   }
 

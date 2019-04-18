@@ -1,7 +1,5 @@
 import AMX from './AMX';
-
-const SIZEOF_FUNCSTUB: number = 20;
-const SIZEOF_FUNCSTUBNT: number = 8;
+import { SIZEOF_FUNCSTUB, SIZEOF_FUNCSTUBNT } from './constants';
 
 export default class FunctionStub {
   public name: string;
@@ -11,10 +9,7 @@ export default class FunctionStub {
   constructor(amx: AMX, offset: number, index: number) {
     let nameOffset: number;
 
-    if (!amx)
-      throw new Error('AMX cannot be null.');
-
-    if (amx.base!.defsize === SIZEOF_FUNCSTUBNT) {
+    if (amx.base.defSize === SIZEOF_FUNCSTUBNT) {
       nameOffset = amx.buffer.readInt32LE(
         offset + index * SIZEOF_FUNCSTUBNT + 4
       );
@@ -24,7 +19,7 @@ export default class FunctionStub {
     for (let char: number; char = amx.buffer[nameOffset++];)
       this.name += String.fromCharCode(char);
 
-    this.buffer = amx.buffer.slice(offset + index * amx.base!.defsize);
+    this.buffer = amx.buffer.slice(offset + index * amx.base.defSize);
     this.index = index;
   }
 
