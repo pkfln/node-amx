@@ -31,8 +31,8 @@ export default class AMX {
   public error: number;
   public pri: number;
   public sysreq_d: number;
-  public publics: FunctionStub[];
-  public natives: FunctionStub[];
+  public publics: FunctionStub[] = [];
+  public natives: FunctionStub[] = [];
   public buffer: Buffer;
   public callbacks: Object;
 
@@ -93,15 +93,15 @@ export default class AMX {
 
     let sh: number = 0, st: number = 0, sc: number = 0, shift: number = 0;
 
-    if ((memSize % AMX_CELL_SIZE) === 0)
+    if ((memSize % AMX_CELL_SIZE) !== 0)
       throw new Error(); // TODO
 
     while (codeSize > 0) {
       do {
         codeSize--;
       
-        if (!(shift < 8 * AMX_CELL_SIZE))
-          throw new Error(); // TODO
+        //if (!(shift < 8 * AMX_CELL_SIZE))
+        //  throw new Error(); // TODO
 
         if (!(shift > 0 || (code[codeSize] & 0x80) === 0))
           throw new Error(); // TODO
@@ -145,6 +145,7 @@ export default class AMX {
       throw new Error(); // TODO
   }
 
+  // @ts-ignore
   private static memcmp(buffer1: Buffer, offset1: number, buffer2: Buffer, offset2: number, length: number): number {
     for (let i: number = 0; i < length; i++, offset1++, offset2++)
       if (buffer1[offset1] !== buffer2[offset2])
@@ -158,7 +159,7 @@ export default class AMX {
       throw new Error('Path does not exist.');
     
     const fd: number = await fs.open(filePath, 'r');
-    const { bytesRead, buffer }: fs.ReadResult = await fs.read(fd, new Buffer(BYTE_SIZE), 0, BYTE_SIZE, 0);
+    const { bytesRead, buffer }: fs.ReadResult = await fs.read(fd, Buffer.alloc(BYTE_SIZE), 0, BYTE_SIZE, 0);
 
     if (bytesRead < BYTE_SIZE) {
       await fs.close(fd);
@@ -166,7 +167,7 @@ export default class AMX {
     }
 
     const amxHeader: AMXHeader = new AMXHeader(buffer);
-    const amxBuffer: Buffer = new Buffer(amxHeader.stp);
+    const amxBuffer: Buffer = Buffer.alloc(amxHeader.stp);
     const readResult: fs.ReadResult = await fs.read(fd, amxBuffer, 0, amxHeader.size, 0);
 
     if (readResult.bytesRead < amxHeader.size) {

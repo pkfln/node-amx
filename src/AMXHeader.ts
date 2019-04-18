@@ -5,7 +5,7 @@ export default class AMXHeader {
 
   constructor(buffer: Buffer) {
     if (!Buffer.isBuffer(buffer))
-      buffer = new Buffer(BYTE_SIZE);
+      buffer = Buffer.alloc(BYTE_SIZE);
 
     if (buffer.length < BYTE_SIZE)
       throw new Error('Buffer size is less than AMX header size.');

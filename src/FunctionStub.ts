@@ -2,7 +2,7 @@ import AMX from './AMX';
 import { SIZEOF_FUNCSTUB, SIZEOF_FUNCSTUBNT } from './constants';
 
 export default class FunctionStub {
-  public name: string;
+  public name: string = '';
   public buffer: Buffer;
   public index: number;
   
@@ -16,7 +16,7 @@ export default class FunctionStub {
     } else
       nameOffset = offset + index * SIZEOF_FUNCSTUB + 4;
 
-    for (let char: number; char = amx.buffer[nameOffset++];)
+    for (let char: number = 0; char = amx.buffer[nameOffset++];)
       this.name += String.fromCharCode(char);
 
     this.buffer = amx.buffer.slice(offset + index * amx.base.defSize);

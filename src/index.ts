@@ -1,1 +1,2 @@
-export * from './AMX';
+import AMX from './AMX';
+export default AMX;
