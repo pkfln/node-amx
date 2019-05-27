@@ -1,6 +1,6 @@
 {
   "name": "node-amx",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An AMX interpreter for Node.js",
   "main": "lib/cjs/index.js",
   "types": "lib/cjs/index.d.ts",
